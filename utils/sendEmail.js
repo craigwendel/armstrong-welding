@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+console.log(process.env.SENDGRID_API_KEY);
 
 const SENDGRID_API = 'https://api.sendgrid.com/v3/mail/send';
 

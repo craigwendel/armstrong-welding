@@ -27,6 +27,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home() {
   const classes = useStyles();
+  const [status, setStatus] = useState({
+    submitted: false,
+    submitting: false,
+    info: { error: false, msg: null },
+  });
   const [state, setState] = useState({
     name: '',
     email: '',
@@ -40,19 +45,51 @@ export default function Home() {
       [name]: value,
     });
   };
-  const handleSubmit = () => {
-    console.log('THE STATE', state);
-    fetch('/api/send-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: state.name,
-        email: state.email,
-        phone: state.phone,
-        message: state.message,
-      }),
-    });
+
+  const handleResponse = (status, msg) => {
+    if (status === 200) {
+      setStatus({
+        submitted: true,
+        submitting: false,
+        info: { error: false, msg: msg },
+      });
+      setInputs({
+        email: '',
+        message: '',
+      });
+    } else {
+      setStatus({
+        info: { error: true, msg: msg },
+      });
+    }
   };
+
+  const handleOnSubmit = async e => {
+    e.preventDefault();
+    setStatus(prevStatus => ({ ...prevStatus, submitting: true }));
+    const res = await fetch('/api/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(state),
+    });
+    const text = await res.text();
+    handleResponse(res.status, text);
+  };
+  // const handleSubmit = () => {
+  //   console.log('THE STATE', state);
+  //   fetch('/api/send-email', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({
+  //       name: state.name,
+  //       email: state.email,
+  //       phone: state.phone,
+  //       message: state.message,
+  //     }),
+  //   });
+  // };
 
   return (
     <Container component="main" maxWidth="sm">
@@ -69,12 +106,12 @@ export default function Home() {
         <Typography className={classes.info} variant="h6">
           armstrongweldfab@gmail.com
         </Typography>
-        <Typography className={classes.info} variant="subtitle">
+        <Typography className={classes.info} variant="subtitle1">
           Our website is currently a work in progress but feel free to request a
           quote or more information below!
         </Typography>
         <Typography variant="h6">Request a Quote / Information</Typography>
-        <div className={classes.form}>
+        <form className={classes.form} onSubmit={handleOnSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -131,11 +168,11 @@ export default function Home() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleSubmit}
+            type="submit"
           >
             Submit
           </Button>
-        </div>
+        </form>
       </div>
     </Container>
   );
