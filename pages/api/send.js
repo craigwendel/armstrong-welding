@@ -1,3 +1,4 @@
+require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
 
 export default async function (req, res) {
@@ -6,12 +7,16 @@ export default async function (req, res) {
   const { name, phone, email, message } = req.body;
 
   const content = {
-    to: 'wendelcraig@gmail.com',
-    from: email,
+    to: 'armstrongweldfab@gmail.com',
+    from: 'armstrongweldfab@gmail.com',
     subject: `New Message From - ${name}`,
     text: message,
-    phone: phone,
-    html: `<p>${message}</p>`,
+    html: `
+    <p>Message from <b>${name}</b></p>
+    <p>Email: ${email}</p>
+    <p>Phone: ${phone}</p>
+    <p>${message}</p>
+    `,
   };
 
   try {

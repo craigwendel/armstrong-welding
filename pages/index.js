@@ -4,7 +4,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { Divider } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -12,6 +14,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+  },
+  link: {
+    fontSize: '1.25rem',
+    marginBottom: theme.spacing(4),
   },
   info: {
     marginBottom: theme.spacing(4),
@@ -53,8 +59,10 @@ export default function Home() {
         submitting: false,
         info: { error: false, msg: msg },
       });
-      setInputs({
+      setState({
+        name: '',
         email: '',
+        phone: '',
         message: '',
       });
     } else {
@@ -77,22 +85,21 @@ export default function Home() {
     const text = await res.text();
     handleResponse(res.status, text);
   };
-  // const handleSubmit = () => {
-  //   console.log('THE STATE', state);
-  //   fetch('/api/send-email', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({
-  //       name: state.name,
-  //       email: state.email,
-  //       phone: state.phone,
-  //       message: state.message,
-  //     }),
-  //   });
-  // };
 
   return (
     <Container component="main" maxWidth="sm">
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={status.submitted}
+        autoHideDuration={4000}
+        onClose={() =>
+          setStatus(prevStatus => ({ ...prevStatus, submitted: false }))
+        }
+      >
+        <Alert severity="success">
+          Thanks for your submission! We'll be in touch soon!
+        </Alert>
+      </Snackbar>
       <div className={classes.paper}>
         <img
           className={classes.info}
@@ -103,9 +110,9 @@ export default function Home() {
           Joseph Armstrong
         </Typography>
         <Typography variant="h6">512.525.3867</Typography>
-        <Typography className={classes.info} variant="h6">
+        <Link href="mailto:armstrongweldfab@gmail.com" className={classes.link}>
           armstrongweldfab@gmail.com
-        </Typography>
+        </Link>
         <Typography className={classes.info} variant="subtitle1">
           Our website is currently a work in progress but feel free to request a
           quote or more information below!
