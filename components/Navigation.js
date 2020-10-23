@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Navigation(props) {
+export default function Navigation() {
   const router = useRouter();
   const classes = useStyles();
   const theme = useTheme();
@@ -79,7 +79,7 @@ export default function Navigation(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleMenuClick = (name, url) => {
+  const handleMenuClick = url => {
     router.push(url);
     setMobileOpen(false);
   };
@@ -93,7 +93,7 @@ export default function Navigation(props) {
               button
               classes={{ selected: classes.selected }}
               disabled={!item.active}
-              onClick={() => handleMenuClick(item.name, item.url)}
+              onClick={() => handleMenuClick(item.url)}
               selected={window.location.pathname === item.url}
             >
               <ListItemText
@@ -107,9 +107,6 @@ export default function Navigation(props) {
       </List>
     </div>
   );
-
-  const container =
-    props.window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className={classes.root}>
@@ -138,7 +135,6 @@ export default function Navigation(props) {
       <nav className={classes.drawer}>
         <Hidden smUp implementation="css">
           <Drawer
-            container={container}
             variant="temporary"
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}

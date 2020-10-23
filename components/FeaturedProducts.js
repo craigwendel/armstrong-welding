@@ -17,6 +17,13 @@ const useStyles = makeStyles({
     flexWrap: 'wrap',
     alignItems: 'center',
   },
+  product: {
+    marginRight: '1rem',
+  },
+  productPrice: {
+    display: 'flex',
+    alignItems: 'center',
+  },
   root: {
     maxWidth: 350,
   },
@@ -47,23 +54,38 @@ export default function FeaturedProducts() {
         </Link>{' '}
         for a quote or more information below!
       </Typography>
-      <Typography className={classes.type} variant="h5" color="primary">
+      <Typography className={classes.type} variant="h4" color="primary">
         Featured Products
       </Typography>
       <div className={classes.container}>
         {allProducts.map(product => (
           <Card key={product.name} className={classes.root}>
-            <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={product.img}
-                title={product.name}
-              />
-            </CardActionArea>
+            {/* <CardActionArea> */}
+            <CardMedia
+              className={classes.media}
+              image={product.img}
+              title={product.name}
+            />
+            {/* </CardActionArea> */}
             <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {product.name}
-              </Typography>
+              <div className={classes.productPrice}>
+                <Typography
+                  className={classes.product}
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                >
+                  {product.name}
+                </Typography>
+                <Typography
+                  color="primary"
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                >
+                  {product.price}
+                </Typography>
+              </div>
               <Typography variant="body2" color="textSecondary" component="p">
                 {product.description}
               </Typography>
@@ -77,9 +99,9 @@ export default function FeaturedProducts() {
               >
                 Make an Offer
               </Button>
-              <Button size="small" color="primary">
+              {/* <Button size="small" color="primary">
                 Learn More
-              </Button>
+              </Button> */}
             </CardActions>
           </Card>
         ))}
