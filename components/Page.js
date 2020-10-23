@@ -11,10 +11,9 @@ const useStyles = makeStyles(theme => ({
     },
   },
   page: {
+    marginTop: 70,
+    padding: '1rem',
     minHeight: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
   },
 }));
 
