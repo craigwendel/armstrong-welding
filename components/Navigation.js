@@ -94,7 +94,7 @@ export default function Navigation() {
               classes={{ selected: classes.selected }}
               disabled={!item.active}
               onClick={() => handleMenuClick(item.url)}
-              selected={window.location.pathname === item.url}
+              selected={router.pathname === item.url}
             >
               <ListItemText
                 primary={item.name}

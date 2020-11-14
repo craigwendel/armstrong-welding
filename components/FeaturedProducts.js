@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     maxWidth: 350,
   },
   media: {
-    height: 140,
+    height: 250,
   },
   link: {
     cursor: 'pointer',
@@ -99,9 +99,12 @@ export default function FeaturedProducts() {
               >
                 Make an Offer
               </Button>
-              {/* <Button size="small" color="primary">
-                Learn More
-              </Button> */}
+              <Button onClick={() => window.open(product.secondaryLink, '_blank')}
+                variant="contained"
+                size="small"
+                color="secondary">
+                Visit Steinhauser's
+              </Button>
             </CardActions>
           </Card>
         ))}
