@@ -72,7 +72,7 @@ export default function FeaturedProducts() {
       </Typography>
       <Typography className={classes.type} variant="subtitle1">
         Our website is currently a work in progress but feel free browse our
-        Featured Products or{' '}
+        Services, Featured Products or{' '}
         <Link className={classes.link} onClick={() => router.push('/contact')}>
           Contact Us
         </Link>{' '}
