@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { allProducts } from '../data/data';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -20,6 +20,9 @@ const useStyles = makeStyles({
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
+    },
   },
   product: {
     marginRight: '1rem',
@@ -45,9 +48,19 @@ const useStyles = makeStyles({
     margin: '1rem 1rem 1rem 3rem',
   },
   services: {
-    marginLeft: '3rem',
+    marginLeft: '2rem',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '0rem',
+    },
   },
-});
+  imgFlex: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  image: {
+    padding: '1rem',
+  },
+}));
 
 export default function FeaturedProducts() {
   const router = useRouter();
@@ -67,6 +80,41 @@ export default function FeaturedProducts() {
       </Typography>
       <div className={classes.homeContent}>
         <div>
+          <Typography className={classes.type} variant="h4" color="primary">
+            Featured Services
+          </Typography>
+          <Typography className={classes.type} variant="h5" color="primary">
+            Wrought Iron / Aluminum Work
+          </Typography>
+          <Typography className={classes.bullets} variant="h6" color="primary">
+            • Fences
+          </Typography>
+          <Typography className={classes.bullets} variant="h6" color="primary">
+            • Entry Ways
+          </Typography>
+          <Typography className={classes.bullets} variant="h6" color="primary">
+            • Staircases
+          </Typography>
+          <div classes={classes.imgFlex}>
+            <div className={classes.image}>
+              <Image
+                src="/static/product-images/iron-fence.jpg"
+                width="300"
+                height="250"
+                alt="iron fence"
+              />
+            </div>
+            <div className={classes.image}>
+              <Image
+                src="/static/product-images/aluminum.jpg"
+                width="300"
+                height="250"
+                alt="aluminum rails"
+              />
+            </div>
+          </div>
+        </div>
+        <div className={classes.services}>
           <Typography className={classes.type} variant="h4" color="primary">
             Featured Products
           </Typography>
@@ -127,23 +175,6 @@ export default function FeaturedProducts() {
               </Card>
             ))}
           </div>
-        </div>
-        <div className={classes.services}>
-          <Typography className={classes.type} variant="h4" color="primary">
-            Featured Services
-          </Typography>
-          <Typography className={classes.type} variant="h5" color="primary">
-            Wrought Iron Work
-          </Typography>
-          <Typography className={classes.bullets} variant="h6" color="primary">
-            • Fences
-          </Typography>
-          <Typography className={classes.bullets} variant="h6" color="primary">
-            • Entry Ways
-          </Typography>
-          <Typography className={classes.bullets} variant="h6" color="primary">
-            • Staircases
-          </Typography>
         </div>
       </div>
     </>
