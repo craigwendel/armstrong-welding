@@ -1,31 +1,28 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Navigation from './Navigation';
+import Footer from './Footer';
 
-const useStyles = makeStyles(theme => ({
-  container: {
+const useStyles = makeStyles((theme) => ({
+  page: {
     display: 'grid',
     gridTemplateColumns: '1fr',
-    [theme.breakpoints.up('sm')]: {
-      gridTemplateColumns: '200px 1fr',
-    },
-  },
-  page: {
-    marginTop: 70,
-    padding: '1rem',
-    minHeight: '100%',
   },
 }));
 
 export default function Page(props) {
   const classses = useStyles();
+  // const headerFooterHeight = '200px';
   return (
-    <div className={classses.container}>
-      <Navigation />
-      <div className={classses.page}>
+    <>
+      <div
+        className={classses.page}
+        // style={{
+        //   height: `calc(100vh - ${headerFooterHeight})`,
+        // }}
+      >
         {props.children}
-        {/* <Footer /> */}
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

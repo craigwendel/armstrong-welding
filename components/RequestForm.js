@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import { Button, TextField, Typography } from '@material-ui/core';
 import SnackbarAlert from './SnackbarAlert';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%',
     marginTop: theme.spacing(1),
@@ -28,7 +26,7 @@ export default function RequestForm() {
     phone: '',
     message: '',
   });
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
     setState({
       ...state,
@@ -56,9 +54,9 @@ export default function RequestForm() {
     }
   };
 
-  const handleOnSubmit = async e => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    setStatus(prevStatus => ({ ...prevStatus, submitting: true }));
+    setStatus((prevStatus) => ({ ...prevStatus, submitting: true }));
     const res = await fetch('/api/send', {
       method: 'POST',
       headers: {
@@ -77,7 +75,7 @@ export default function RequestForm() {
         severity="success"
         message="Thanks for your submission! We'll be in touch soon!"
         onClose={() =>
-          setStatus(prevStatus => ({ ...prevStatus, submitted: false }))
+          setStatus((prevStatus) => ({ ...prevStatus, submitted: false }))
         }
       />
       <Typography variant="h6">Request a Quote / Information</Typography>

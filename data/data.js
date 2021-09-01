@@ -1,19 +1,25 @@
-export const menuItems = [
-  { name: 'Home', active: true, url: '/' },
-  { name: 'All Products', active: false, url: '/all-products' },
-  { name: 'About', active: false, url: '/about' },
-  { name: 'Contact', active: true, url: '/contact' },
-];
-
-export const allProducts = [
+export const services = [
   {
-    name: 'Pipe H-Brace',
-    img: '/static/product-images/pipe-h-brace.jpg',
-    price: '$75',
-    description: `These are located at Steinhauser's in Brookshire and available for purchase. 84 inches tall up to the caps and 48 inches in between. Made from 2 7/8" pipe. Tractor Supply Company sells these starting at $169`,
-    slug: 'pipe-h-brace',
-    offerLink:
-      'https://offerup.com/item/detail/975686728/?fbclid=IwAR1iJm1_-0-cnXSweNFuMBLv0gv-VZZY_7ij0b6j0f4SJOl4wAC8FDsUT4A&_branch_match_id=402839680059803247',
-    secondaryLink: 'https://www.steinhausers.com/contact/brookshire-location',
+    title: 'Aluminum Fabrication',
+    content:
+      'There are very few companies around that can provide quality aluminum welding and fabrication services. This is caused by the level of skill required to TIG (tungsten inert gas) welding aluminum.',
+    image: '/services-aluminum.jpg',
+  },
+  {
+    title: 'Stainless Steel Fabrication',
+    content:
+      'Armstrong Welding & Fabrication has a unique blend of skill sets giving us the ability to complete your project from design to installation no matter what the alloy may be.',
+    image: '/services-steel.jpg',
+  },
+  {
+    title: 'Custom Fabrication',
+    content:
+      'Armstrong Welding & Fabrication has a team of highly talented welders fabricating any alloy with any process.  From art to functionality, energy to commercial, we can do it all.',
+    image: '/services-fabrication.jpg',
+  },
+  {
+    title: 'Computer Aided Design (CAD)',
+    content: `We have staff that utilize computers to aid in the creation, modification, analysis, or optimization of design.  Whether it's your art, furniture, or oilfield skid, we can come up with a CAD design for you.`,
+    image: '/services-cad.jpg',
   },
 ];
