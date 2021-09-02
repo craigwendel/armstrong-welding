@@ -3,16 +3,22 @@ import Image from 'next/image';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Typography, Button } from '@material-ui/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   container: {
     padding: '3rem',
     display: 'flex',
     alignItems: 'center',
     margin: '2rem 0rem',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+    },
   },
   image: {
-    width: '100%',
-    marginRight: '2rem',
+    marginBottom: '2rem',
+    [theme.breakpoints.up('sm')]: {
+      width: '100%',
+      marginRight: '2rem',
+    },
   },
   title: {
     marginBottom: '1rem',
@@ -20,14 +26,19 @@ const useStyles = makeStyles({
   button: {
     margin: '2rem 0rem',
   },
-});
+}));
 
 export default function About() {
   const classes = useStyles();
   return (
     <div className={classes.container}>
       <div className={classes.image}>
-        <Image src="/welder-usa.jpg" height={300} width={200} />
+        <Image
+          src="/welder-usa.jpg"
+          alt="welder welding alloy in USA helmet"
+          height={300}
+          width={250}
+        />
       </div>
       <div>
         <Typography variant="h4" color="secondary" className={classes.title}>

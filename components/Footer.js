@@ -3,14 +3,16 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import { AppBar, Typography, Link } from '@material-ui/core';
 import SocialLinks from './SocialLinks';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'row',
-    flexWrap: 'wrap',
     padding: '2rem',
     justifyContent: 'space-between',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+    },
   },
   column: {
     display: 'flex',
@@ -29,7 +31,23 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
   },
-});
+  mobileTag: {
+    display: 'none',
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '2rem',
+      color: '#ffffffcc',
+      display: 'block',
+    },
+  },
+  desktopTag: {
+    display: 'block',
+    marginTop: '1rem',
+    color: '#ffffffcc',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
+  },
+}));
 
 export default function Footer() {
   const classes = useStyles();
@@ -53,7 +71,11 @@ export default function Footer() {
           {'Copyright © '}
           {new Date().getFullYear()}
         </Typography> */}
-        <Typography variant="body2" className={classes.link} align="center">
+        <Typography
+          variant="body2"
+          className={classes.desktopTag}
+          align="center"
+        >
           {'Site created by '}
           <Link
             color="inherit"
@@ -83,6 +105,21 @@ export default function Footer() {
         </div>
         <Typography variant="body2" className={classes.link}>
           After hours service available
+        </Typography>
+        <Typography
+          variant="body2"
+          className={classes.mobileTag}
+          align="center"
+        >
+          {'Site created by '}
+          <Link
+            color="inherit"
+            target="_blank"
+            rel="noopener"
+            href="https://craigawendel.com"
+          >
+            Craig Wendel
+          </Link>
         </Typography>
       </div>
     </AppBar>

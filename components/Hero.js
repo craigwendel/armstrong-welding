@@ -3,12 +3,11 @@ import Image from 'next/image';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Typography } from '@material-ui/core';
 
-const useStyles = makeStyles({
-  root: {
-    marginBottom: '3rem',
-  },
+const useStyles = makeStyles((theme) => ({
+  root: {},
   title: {
     marginBottom: '1rem',
+    textShadow: `2px 2px 3px ${theme.palette.primary.main}`,
   },
   container: {
     height: 500,
@@ -32,8 +31,11 @@ const useStyles = makeStyles({
     zIndex: 1,
     position: 'absolute',
     padding: '1rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
-});
+}));
 
 export default function Hero() {
   const classes = useStyles();
@@ -55,12 +57,13 @@ export default function Hero() {
             <Image src="/armstrong-tagline.png" height={125} width={500} />
           </div>
 
-          <Typography align="center" className={classes.title} variant="h3">
+          <Typography className={classes.title} component="h1" variant="h3">
             Custom Fabrication and Welding Services
           </Typography>
-          <Typography align="center" variant="h4">
+          <Typography className={classes.title} variant="h3">
             512.525.3867
           </Typography>
+          <Image src="/veteran-owned.png" height={100} width={300} />
         </div>
       </div>
     </div>
